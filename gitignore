@@ -1,0 +1,36 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+dist/
+build/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Personal configs
+sec-hud.desktop
+sec-hud-auto.sh
+setup-autostart.sh
+sec-hud-setup.sh
+
+# Backups
+*.save
+*.bak
+*.backup
+*.old
+
+# Logs
+*.log
+
+# OS
+Thumbs.db
+.directory
