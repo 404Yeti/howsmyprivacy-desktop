@@ -1,7 +1,12 @@
 #!/usr/bin/env python3
-"""SEC-HUD: Cyberpunk Security HUD for desktop monitoring.
+"""HowsMyPrivacy Desktop Monitor
 
-GTK4 version with improved positioning and dragging support.
+A privacy and security posture monitor for Linux desktops.
+Part of the HowsMyPrivacy family - local posture-checking tools
+for desktops, browsers, and mobile devices.
+
+Positioned on the right side of the desktop, auto-refreshes every 60s,
+and rates security with color indicators plus a composite score.
 """
 
 import math
@@ -40,15 +45,15 @@ class SecurityCheck:
 # ---------------------------------------------------------------------------
 
 COLORS = {
-    "accent":     (0x89 / 255, 0xd1 / 255, 0xc9 / 255),   # #89d1c9
-    "bg_dark":    (0x0a / 255, 0x0e / 255, 0x17 / 255),    # #0a0e17
-    "bg_panel":   (0x0d / 255, 0x12 / 255, 0x1c / 255),    # slightly lighter
-    "green":      (0x00 / 255, 0xff / 255, 0x41 / 255),    # #00ff41
-    "yellow":     (0xff / 255, 0xff / 255, 0x00 / 255),    # #ffff00
-    "red":        (0xff / 255, 0x00 / 255, 0x40 / 255),    # #ff0040
-    "dim":        (0.35, 0.45, 0.50),
-    "text":       (0.78, 0.88, 0.90),
-    "text_bright": (0.92, 0.97, 0.98),
+    "accent":     (0xfc / 255, 0xc8 / 255, 0x00 / 255),   # #fcc800 - HowsMyPrivacy Gold
+    "bg_dark":    (0x0a / 255, 0x0a / 255, 0x0a / 255),    # #0a0a0a - Pure black
+    "bg_panel":   (0x15 / 255, 0x15 / 255, 0x15 / 255),    # #151515 - Dark gray
+    "green":      (0x00 / 255, 0xff / 255, 0x41 / 255),    # #00ff41 - Matrix green
+    "yellow":     (0xfc / 255, 0xc8 / 255, 0x00 / 255),    # #fcc800 - Brand yellow
+    "red":        (0xff / 255, 0x00 / 255, 0x40 / 255),    # #ff0040 - Alert red
+    "dim":        (0.40, 0.40, 0.35),
+    "text":       (0.85, 0.85, 0.80),
+    "text_bright": (0.95, 0.95, 0.90),
 }
 
 STATUS_COLORS = {
@@ -605,10 +610,10 @@ class CyberpunkFrame:
         pad = self.PADDING
         y = pad
 
-        # header: SEC-HUD
+        # header: HowsMyPrivacy
         cr.set_font_size(self.HEADER_FONT_SIZE)
         self._set_color(cr, COLORS["accent"], 0.9)
-        text = "SEC-HUD"
+        text = "HOWSMYPRIVACY"
         extents = cr.text_extents(text)
         tx = (w - extents.width) / 2
         y += 18
@@ -748,7 +753,7 @@ class SecHudWindow(Gtk.ApplicationWindow):
     WIDTH = 300
 
     def __init__(self, app):
-        super().__init__(application=app, title="SEC-HUD")
+        super().__init__(application=app, title="HowsMyPrivacy - Desktop Monitor")
 
         self.scanner = SecurityScanner()
         self.frame = CyberpunkFrame()
@@ -857,11 +862,11 @@ class SecHudWindow(Gtk.ApplicationWindow):
 # Application & Entry point
 # ---------------------------------------------------------------------------
 
-class SecHudApp(Gtk.Application):
+class HowsMyPrivacyApp(Gtk.Application):
     """GTK4 Application wrapper."""
 
     def __init__(self):
-        super().__init__(application_id="com.tracelabs.sechud")
+        super().__init__(application_id="org.howsmyprivacy.desktop")
 
     def do_activate(self):
         """Activated - create window."""
@@ -870,7 +875,7 @@ class SecHudApp(Gtk.Application):
 
 
 def main():
-    app = SecHudApp()
+    app = HowsMyPrivacyApp()
     app.run(None)
 
 

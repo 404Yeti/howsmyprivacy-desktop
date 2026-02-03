@@ -1,315 +1,341 @@
-# SEC-HUD
+# HowsMyPrivacy - Desktop Monitor
 
-**Cyberpunk Security HUD** - A real-time security posture monitor for your Linux desktop.
+<div align="center">
 
-![SEC-HUD Screenshot](https://via.placeholder.com/600x800/0a0e17/89d1c9?text=SEC-HUD+Screenshot)
+![HowsMyPrivacy Logo](https://via.placeholder.com/200x200/000000/fcc800?text=👁️)
 
-A GTK4 + Cairo desktop widget that continuously monitors your system's security posture with a sleek cyberpunk aesthetic. Features real-time scanning, color-coded status indicators, and a composite security score.
+**Real-time privacy and security posture monitoring for Linux desktops**
+
+Part of the **HowsMyPrivacy** family - A suite of local posture-checking tools for desktops, browsers, and mobile devices.
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://www.python.org/downloads/)
+[![GTK](https://img.shields.io/badge/GTK-4.0-green.svg)](https://www.gtk.org/)
+
+</div>
 
 ---
 
-## Features
+## 🔍 What is HowsMyPrivacy?
 
-🛡️ **Real-Time Security Monitoring**
-- VPN connection status
-- Tor service monitoring
-- DNS leak detection
-- Open ports scanning
-- Firewall status
-- MAC address randomization
-- And more...
+**HowsMyPrivacy** is a family of privacy and security monitoring tools designed to give you instant visibility into your digital security posture. The Desktop Monitor is a lightweight, always-on display that continuously checks your Linux system for privacy and security issues.
 
-🎨 **Cyberpunk Aesthetic**
-- Transparent beveled window with neon glow
-- Color-coded status indicators (Green/Yellow/Red)
-- Animated scanlines and glowing accents
-- Monospace font with dotted separators
+### The HowsMyPrivacy Family
 
-⚡ **Performance**
-- Lightweight and efficient
+- **🖥️ Desktop Monitor** (this repo) - Linux desktop security HUD
+- **🌐 Browser Extension** (coming soon) - Real-time browser privacy checks
+- **📱 Mobile App** (coming soon) - Mobile device security monitoring
+
+---
+
+## ✨ Features
+
+### 🛡️ Real-Time Monitoring
+- **VPN Status** - Instant VPN connection detection
+- **Tor Monitoring** - Track Tor service status and connectivity
+- **DNS Leak Protection** - Verify privacy DNS vs ISP DNS
+- **Open Ports** - Scan for listening services
+- **Firewall Status** - Check active firewall protection
+- **MAC Randomization** - Verify network anonymity
+- **And 8 more checks...**
+
+### 🎨 Privacy-First Design
+- Minimalist black & gold aesthetic
+- Always-on-top, non-intrusive display
+- Color-coded status indicators (🟢 Green / 🟡 Yellow / 🔴 Red)
+- Composite privacy score (0-100)
+- Zero data collection - everything runs locally
+
+### ⚡ Performance
+- Lightweight (~50MB RAM)
 - Auto-refreshes every 60 seconds
 - Non-blocking network checks
-- Minimal CPU usage when idle
+- Minimal CPU usage (<1% idle)
 
-🎯 **User Experience**
-- Frameless, always-on-top window
-- Drag to reposition
+### 🎯 User Experience
+- Drag to reposition anywhere
 - Right-click to close
 - Autostart on boot support
+- Works on X11 and Wayland
 
 ---
 
-## Security Checks
+## 📊 Privacy Checks
 
-### Network
-- **VPN Status** - Detects tun/wg/tap interfaces
-- **Tor Status** - Checks systemd service and port 9050
-- **DNS Leak** - Validates privacy DNS vs ISP DNS
-- **Public IP** - Fetches current external IP
-- **Open Ports** - Lists listening TCP ports
-- **Firewall** - Checks ufw/iptables/nftables
+### Network Privacy
+| Check | What It Does |
+|-------|-------------|
+| **VPN Status** | Detects tun/wg/tap VPN interfaces |
+| **Tor Status** | Monitors Tor service and SOCKS port |
+| **DNS Leak** | Validates use of privacy DNS providers |
+| **Public IP** | Shows your current external IP address |
+| **Open Ports** | Lists listening TCP services |
+| **Firewall** | Checks ufw/iptables/nftables status |
 
-### System
-- **MAC Address** - Verifies randomization
-- **Hostname** - Detects identifiable names
-- **SSH Config** - Checks password authentication
-- **Kernel ASLR** - Validates address space randomization
-- **File Permissions** - Audits /etc/shadow and /etc/passwd
+### System Security
+| Check | What It Does |
+|-------|-------------|
+| **MAC Address** | Verifies hardware address randomization |
+| **Hostname** | Detects identifiable machine names |
+| **SSH Config** | Checks password authentication settings |
+| **Kernel ASLR** | Validates memory address randomization |
+| **File Permissions** | Audits critical system file permissions |
 
-### Privacy
-- **Browser Data** - Detects Firefox/Chrome/Chromium/Brave
-- **Shell History** - Counts bash/zsh history entries
-- **Clipboard** - Checks clipboard contents
+### Privacy Indicators
+| Check | What It Does |
+|-------|-------------|
+| **Browser Data** | Detects Firefox/Chrome/Chromium/Brave traces |
+| **Shell History** | Counts command history entries |
+| **Clipboard** | Monitors clipboard data exposure |
 
 ---
 
-## Installation
-
-### Prerequisites
-
-```bash
-# Debian/Ubuntu/Kali
-sudo apt update
-sudo apt install python3 python3-gi python3-gi-cairo gir1.2-gtk-4.0
-
-# Optional tools for full functionality
-sudo apt install iproute2 ufw tor xclip
-```
+## 🚀 Quick Start
 
 ### Automated Setup (Recommended)
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/sec-hud.git
-cd sec-hud
+git clone https://github.com/yourusername/howsmyprivacy-desktop.git
+cd howsmyprivacy-desktop
 
 # Run the setup script
 chmod +x setup.sh
 ./setup.sh
 ```
 
-The setup script will:
-- ✅ Check and install all dependencies
-- ✅ Detect GTK version (3 or 4)
-- ✅ Verify Python version
-- ✅ Install optional tools (ufw, tor, xclip)
-- ✅ Configure autostart on boot
-- ✅ Create application menu entry
-- ✅ Test that SEC-HUD works
+The setup script automatically:
+- ✅ Installs all dependencies
+- ✅ Detects your GTK version
+- ✅ Tests the application
+- ✅ Configures autostart (optional)
+- ✅ Creates app menu entry (optional)
 
-### Manual Install
+### Manual Installation
 
 ```bash
-# Clone the repository
-git clone https://github.com/yourusername/sec-hud.git
-cd sec-hud
-
-# Install dependencies
+# Install dependencies (Ubuntu/Debian/Kali)
+sudo apt update
 sudo apt install python3-gi python3-gi-cairo gir1.2-gtk-4.0
 
-# Make executable
-chmod +x sec-hud.sh sec-hud-scan.py
+# Optional: Security tools for full functionality
+sudo apt install iproute2 ufw tor xclip
 
-# Run it
-./sec-hud.sh
+# Run HowsMyPrivacy
+python3 howsmyprivacy-desktop.py
 ```
 
 ---
 
-## Usage
+## 📖 Documentation
 
-### Manual Launch
+- **[Installation Guide](INSTALL.md)** - Detailed setup instructions
+- **[Autostart Guide](AUTOSTART.md)** - Configure automatic startup
+- **[Contributing](#-contributing)** - Help improve HowsMyPrivacy
 
+---
+
+## 🎮 Usage
+
+### Launch
 ```bash
-# Using the launcher (checks dependencies)
-./sec-hud.sh
-
-# Or run Python directly
-python3 sec-hud-scan.py
+./howsmyprivacy-desktop.sh
 ```
 
 ### Controls
+- **Left-click + Drag** - Move the monitor window
+- **Right-click** - Close the application
+- **Auto-refresh** - Updates every 60 seconds
 
-- **Left-click + Drag** - Move window
-- **Right-click** - Close application
-- **Auto-refresh** - Every 60 seconds
+### Interpreting Your Score
 
-### Autostart on Boot
-
-```bash
-# Create autostart entry
-mkdir -p ~/.config/autostart
-
-cat > ~/.config/autostart/sec-hud.desktop << 'EOF'
-[Desktop Entry]
-Type=Application
-Name=SEC-HUD
-Comment=Cyberpunk Security HUD
-Exec=/full/path/to/sec-hud/sec-hud.sh
-Terminal=false
-X-GNOME-Autostart-enabled=true
-EOF
-```
-
-Replace `/full/path/to/sec-hud/` with your actual installation path.
+| Score | Status | Meaning |
+|-------|--------|---------|
+| 70-100 | 🟢 Good | Strong privacy posture |
+| 40-69 | 🟡 Fair | Some improvements needed |
+| 0-39 | 🔴 Poor | Significant privacy gaps |
 
 ---
 
-## Configuration
+## 🔧 Configuration
 
-SEC-HUD works out of the box with sensible defaults. Advanced users can modify:
+### Change Refresh Interval
 
-### Window Size
-Edit `sec-hud-scan.py`, line 827:
-```python
-WIDTH = 300  # Change width
-```
-
-### Refresh Interval
-Edit `sec-hud-scan.py`, line 858:
+Edit `howsmyprivacy-desktop.py`, line ~858:
 ```python
 GLib.timeout_add_seconds(60, self._on_refresh)  # Change 60 to desired seconds
 ```
 
-### Color Scheme
-Edit `sec-hud-scan.py`, lines 44-60:
+### Customize Colors
+
+Edit `howsmyprivacy-desktop.py`, lines 44-60:
 ```python
 COLORS = {
-    "accent": (0x89 / 255, 0xd1 / 255, 0xc9 / 255),  # Cyan/teal
-    # ... modify RGB values
+    "accent": (0xfc / 255, 0xc8 / 255, 0x00 / 255),  # HowsMyPrivacy gold
+    # ... modify other colors
 }
 ```
 
+### Window Size
+
+Edit `howsmyprivacy-desktop.py`, line ~827:
+```python
+WIDTH = 300  # Adjust width in pixels
+```
+
 ---
 
-## Troubleshooting
+## 🐛 Troubleshooting
 
 ### Window doesn't appear
-- Verify you're in a graphical environment: `echo $DISPLAY`
-- Check GTK4 installation: `python3 -c "import gi; gi.require_version('Gtk','4.0'); from gi.repository import Gtk; print('OK')"`
+```bash
+# Check display server
+echo $DISPLAY
 
-### "ImportError: Requiring namespace 'Gdk' version '3.0'"
-- Your system has GTK4. This version is GTK4-compatible.
-- If you somehow got the GTK3 version, ensure you have the latest from this repo.
+# Verify GTK4 installation
+python3 -c "import gi; gi.require_version('Gtk','4.0'); from gi.repository import Gtk; print('✓ OK')"
+```
 
-### Permission errors during scans
-- Some checks require root (firewall, certain file permissions)
-- This is normal - app shows "yellow" status for unavailable checks
-- To get full results: `sudo python3 sec-hud-scan.py` (not recommended for daily use)
+### Permission errors during checks
+Some checks (firewall, file permissions) require elevated privileges. This is normal - the app will show yellow warnings for unavailable checks.
 
-### High CPU usage
-- Check for runaway threads: `top -p $(pgrep -f sec-hud-scan)`
-- Verify network checks aren't timing out repeatedly
+### Autostart not working
+```bash
+# Verify autostart file
+cat ~/.config/autostart/howsmyprivacy.desktop
 
-### Autostart doesn't work
-- Check file exists: `ls ~/.config/autostart/sec-hud.desktop`
-- Verify path is correct in desktop file
-- Check logs: `journalctl --user -xe | grep -i sec-hud`
+# Check logs
+journalctl --user -xe | grep -i privacy
+```
+
+See [TROUBLESHOOTING.md](TROUBLESHOOTING.md) for more help.
 
 ---
 
-## Development
-
-### Requirements
-- Python 3.8+
-- GTK 4.0
-- Cairo
-- GObject Introspection
+## 🏗️ Technical Details
 
 ### Architecture
-
 ```
-sec-hud-scan.py
-├── SecurityScanner      # Runs all security checks
-├── CyberpunkFrame       # Cairo drawing/rendering
+howsmyprivacy-desktop.py
+├── SecurityScanner      # Executes privacy/security checks
+├── CyberpunkFrame       # Cairo rendering engine
 ├── SecHudWindow         # GTK4 window management
-└── SecHudApp            # GTK4 application lifecycle
+└── HowsMyPrivacyApp     # Application lifecycle
 ```
 
-### Adding New Checks
+### Requirements
+- **Python**: 3.8 or higher
+- **GTK**: 4.0 (GTK 3.0 compatible version available)
+- **Cairo**: Graphics rendering
+- **Linux**: X11 or Wayland display server
 
-1. Add check method to `SecurityScanner` class:
+### Supported Distributions
+- ✅ Kali Linux 2024+
+- ✅ Ubuntu 22.04+
+- ✅ Debian 12+
+- ✅ Parrot OS
+- ✅ Fedora 38+
+- ✅ Arch Linux
+- ✅ Any modern Linux with GTK4
+
+---
+
+## 🤝 Contributing
+
+We welcome contributions to HowsMyPrivacy! Here's how:
+
+1. **Fork** the repository
+2. **Create** a feature branch (`git checkout -b feature/new-check`)
+3. **Add** your privacy check or improvement
+4. **Test** thoroughly on multiple distributions
+5. **Submit** a pull request
+
+### Adding New Privacy Checks
+
 ```python
 def check_custom(self) -> SecurityCheck:
+    """Add your custom privacy check here"""
     # Your check logic
-    return SecurityCheck("Name", "green", "Detail", "Section")
+    return SecurityCheck("Check Name", "green", "Detail", "Section")
 ```
 
-2. Add to appropriate runner:
-```python
-def run_local_checks(self):
-    checks = [
-        self.check_custom,  # Add here
-        # ...
-    ]
-```
-
-### Contributing
-
-Contributions welcome! Please:
-1. Fork the repository
-2. Create a feature branch
-3. Test thoroughly
-4. Submit a pull request
+See [CONTRIBUTING.md](CONTRIBUTING.md) for detailed guidelines.
 
 ---
 
-## Credits
+## 📜 License
 
-**Created by:** Robbie (Trace Labs)
-- GitHub: [@yourusername](https://github.com/yourusername)
-- Organization: [Trace Labs](https://www.tracelabs.org/)
-
-**Purpose:** Built for OSINT/DFIR professionals who need continuous security awareness while working on investigations.
+This project is licensed under the MIT License - see [LICENSE](LICENSE) file for details.
 
 ---
 
-## License
+## 🙏 Acknowledgments
 
-[Choose your license - MIT recommended]
-
----
-
-## Roadmap
-
-- [ ] Wayland native support
-- [ ] Configuration file (YAML/JSON)
-- [ ] Custom check plugins
-- [ ] Alert notifications
-- [ ] Log/history tracking
-- [ ] Multi-profile support
-- [ ] Integration with security tools (nmap, wireshark)
-- [ ] System tray mode
+- **Logo Design**: HowsMyPrivacy "privacy eye" concept
+- **Inspired by**: Terminal-based security tools and privacy-first design principles
+- **Community**: OSINT, InfoSec, and privacy advocacy communities
 
 ---
 
-## Screenshots
+## 🌟 Roadmap
 
-### Main Display
-![Main HUD](https://via.placeholder.com/300x600/0a0e17/89d1c9?text=Main+HUD)
+### Current Version (v1.0)
+- ✅ Desktop monitor for Linux
+- ✅ 14+ privacy checks
+- ✅ Real-time monitoring
+- ✅ Autostart support
 
-### Network Section
-![Network checks](https://via.placeholder.com/300x400/0a0e17/00ff41?text=Network+Checks)
-
-### Privacy Section
-![Privacy checks](https://via.placeholder.com/300x400/0a0e17/ff0040?text=Privacy+Checks)
-
----
-
-## Acknowledgments
-
-- Inspired by cyberpunk aesthetics and terminal-based security tools
-- Built for the OSINT/CTI community
-- Trace Labs VM contributors and testers
-
----
-
-## Support
-
-- **Issues:** [GitHub Issues](https://github.com/yourusername/sec-hud/issues)
-- **Discussions:** [GitHub Discussions](https://github.com/yourusername/sec-hud/discussions)
-- **Trace Labs:** [tracelabs.org](https://www.tracelabs.org/)
+### Upcoming Features
+- [ ] **Browser Extension** - Real-time browser privacy monitoring
+- [ ] **Mobile App** - Android/iOS privacy checks
+- [ ] **Configuration File** - YAML-based settings
+- [ ] **Custom Plugins** - User-defined privacy checks
+- [ ] **Alert Notifications** - Desktop notifications for privacy breaches
+- [ ] **Privacy Log** - Historical tracking and trends
+- [ ] **Multi-Profile Support** - Work/Personal/Anonymous profiles
+- [ ] **Network Monitor Integration** - Deep packet inspection
+- [ ] **System Tray Mode** - Minimize to tray
 
 ---
 
-**Stay secure. Stay aware. Stay cyberpunk.** 🛡️✨
+## 📱 Stay Connected
+
+- **Website**: [howsmyprivacy.org](https://howsmyprivacy.org) *(coming soon)*
+- **GitHub**: [@yourusername](https://github.com/yourusername)
+- **Issues**: [Report a bug](https://github.com/yourusername/howsmyprivacy-desktop/issues)
+- **Discussions**: [Join the community](https://github.com/yourusername/howsmyprivacy-desktop/discussions)
+
+---
+
+## 💡 Philosophy
+
+**Your privacy is your right.** HowsMyPrivacy believes in:
+
+- 🔒 **Privacy by design** - No telemetry, no data collection
+- 💻 **Local-first** - All checks run on your machine
+- 🌐 **Open source** - Transparent and auditable code
+- 🆓 **Free forever** - Privacy tools should be accessible to everyone
+- 🛡️ **User empowerment** - Knowledge is the first step to privacy
+
+---
+
+## 🎯 Why HowsMyPrivacy?
+
+In an age of constant surveillance, you deserve to know your privacy posture at a glance. HowsMyPrivacy gives you:
+
+- **Instant visibility** into your privacy status
+- **Proactive monitoring** to catch issues before they matter
+- **Peace of mind** knowing your defenses are up
+- **Educational insight** into privacy best practices
+
+Whether you're a privacy advocate, security professional, journalist, activist, or just privacy-conscious - HowsMyPrivacy has your back.
+
+---
+
+<div align="center">
+
+**🛡️ Know your privacy. Protect your future. 🛡️**
+
+*Made with 💛 for the privacy-conscious community*
+
+</div>
